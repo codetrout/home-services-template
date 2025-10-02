@@ -1,0 +1,335 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+	{
+		title: 'Cleaning Services',
+		description: 'Professional cleaning solutions for residential and commercial properties.',
+		features: [
+			'Deep cleaning and sanitization',
+			'Regular maintenance cleaning',
+			'Post-construction cleanup',
+			'Carpet and upholstery cleaning',
+			'Window cleaning services'
+		]
+	},
+	{
+		title: 'Repair Services',
+		description: 'Expert repairs for all aspects of your home and property.',
+		features: [
+			'Plumbing repairs and installation',
+			'Electrical work and troubleshooting',
+			'Drywall and painting repairs',
+			'Door and window repairs',
+			'General handyman services'
+		]
+	},
+	{
+		title: 'Maintenance Services',
+		description: 'Regular maintenance to keep your property in excellent condition.',
+		features: [
+			'HVAC system maintenance',
+			'Gutter cleaning and maintenance',
+			'Lawn care and landscaping',
+			'Seasonal property inspections',
+			'Preventive maintenance programs'
+		]
+	},
+	{
+		title: 'Inspection Services',
+		description: 'Thorough inspections to identify and prevent potential issues.',
+		features: [
+			'Pre-purchase home inspections',
+			'Annual property assessments',
+			'Safety and code compliance checks',
+			'Detailed inspection reports',
+			'Follow-up consultations'
+		]
+	},
+	{
+		title: 'Emergency Services',
+		description: '24/7 emergency response for urgent home service needs.',
+		features: [
+			'Emergency plumbing repairs',
+			'Electrical emergency response',
+			'Water damage mitigation',
+			'Same-day service availability',
+			'Rapid response team'
+		]
+	},
+	{
+		title: 'Renovation Services',
+		description: 'Transform your space with our professional renovation services.',
+		features: [
+			'Kitchen and bathroom remodeling',
+			'Basement finishing',
+			'Room additions and expansions',
+			'Flooring installation',
+			'Custom carpentry work'
+		]
+	}
+];
+---
+
+<Layout title="Our Services - Home Services" description="Comprehensive home services including cleaning, repairs, maintenance, inspections, and more. Professional solutions for all your needs.">
+	<Navigation />
+
+	<main>
+		<!-- Hero Section -->
+		<section class="page-hero">
+			<div class="container">
+				<h1>Our Services</h1>
+				<p class="hero-subtitle">
+					Comprehensive solutions for all your home service needs.
+					Professional, reliable, and affordable.
+				</p>
+			</div>
+		</section>
+
+		<!-- Services Grid Section -->
+		<section class="services-section">
+			<div class="container">
+				<div class="services-grid">
+					{services.map(service => (
+						<div class="service-detail-card">
+							<h2>{service.title}</h2>
+							<p class="service-description">{service.description}</p>
+							<ul class="service-features">
+								{service.features.map(feature => (
+									<li>{feature}</li>
+								))}
+							</ul>
+							<a href="/contact" class="btn btn-outline">Request Quote</a>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Process Section -->
+		<section class="process-section">
+			<div class="container">
+				<h2 class="section-title">How It Works</h2>
+				<div class="process-grid">
+					<div class="process-step">
+						<div class="step-number">1</div>
+						<h3>Contact Us</h3>
+						<p>Reach out via phone, email, or our contact form to discuss your needs.</p>
+					</div>
+					<div class="process-step">
+						<div class="step-number">2</div>
+						<h3>Get a Quote</h3>
+						<p>Receive a detailed, transparent quote for your project or service.</p>
+					</div>
+					<div class="process-step">
+						<div class="step-number">3</div>
+						<h3>Schedule Service</h3>
+						<p>Choose a convenient time that works with your schedule.</p>
+					</div>
+					<div class="process-step">
+						<div class="step-number">4</div>
+						<h3>Quality Work</h3>
+						<p>Our professionals deliver exceptional service with guaranteed satisfaction.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section">
+			<div class="container">
+				<div class="cta-content">
+					<h2>Ready to Book a Service?</h2>
+					<p>Contact us today for a free consultation and quote.</p>
+					<a href="/contact" class="btn btn-primary">Get Started</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>
+
+<style>
+	.page-hero {
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+		color: white;
+		padding: var(--spacing-xl) var(--spacing-md);
+		text-align: center;
+	}
+
+	.page-hero h1 {
+		color: white;
+		font-size: 3rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		color: rgba(255, 255, 255, 0.95);
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.services-section {
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: var(--spacing-lg);
+	}
+
+	.service-detail-card {
+		background: white;
+		padding: var(--spacing-lg);
+		border-radius: var(--border-radius);
+		border: 2px solid var(--color-border);
+		transition: all 0.3s ease;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.service-detail-card:hover {
+		border-color: var(--color-primary);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		transform: translateY(-4px);
+	}
+
+	.service-detail-card h2 {
+		color: var(--color-primary);
+		margin-bottom: var(--spacing-sm);
+		font-size: 1.75rem;
+	}
+
+	.service-description {
+		margin-bottom: var(--spacing-md);
+	}
+
+	.service-features {
+		list-style: none;
+		margin-bottom: var(--spacing-md);
+		flex-grow: 1;
+	}
+
+	.service-features li {
+		padding: 0.5rem 0;
+		padding-left: 1.5rem;
+		position: relative;
+		color: var(--color-text);
+	}
+
+	.service-features li::before {
+		content: '✓';
+		position: absolute;
+		left: 0;
+		color: var(--color-primary);
+		font-weight: bold;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 0.875rem 1.75rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		text-align: center;
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
+
+	.btn-outline {
+		background: transparent;
+		color: var(--color-primary);
+		border: 2px solid var(--color-primary);
+	}
+
+	.btn-outline:hover {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	.btn-primary {
+		background: white;
+		color: var(--color-primary);
+		border: 2px solid white;
+	}
+
+	.btn-primary:hover {
+		background: transparent;
+		color: white;
+	}
+
+	.process-section {
+		background: var(--color-bg-light);
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.section-title {
+		text-align: center;
+		margin-bottom: var(--spacing-lg);
+	}
+
+	.process-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: var(--spacing-lg);
+	}
+
+	.process-step {
+		text-align: center;
+	}
+
+	.step-number {
+		width: 60px;
+		height: 60px;
+		background: var(--color-primary);
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.5rem;
+		font-weight: bold;
+		margin: 0 auto var(--spacing-sm);
+	}
+
+	.process-step h3 {
+		margin-bottom: var(--spacing-sm);
+		color: var(--color-text);
+	}
+
+	.cta-section {
+		background: var(--color-primary);
+		color: white;
+		text-align: center;
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.cta-content h2 {
+		color: white;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.cta-content p {
+		color: rgba(255, 255, 255, 0.95);
+		font-size: 1.25rem;
+		margin-bottom: var(--spacing-md);
+	}
+
+	@media (max-width: 768px) {
+		.page-hero h1 {
+			font-size: 2rem;
+		}
+
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.process-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

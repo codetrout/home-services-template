@@ -1,0 +1,405 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const teamMembers = [
+	{
+		name: 'John Smith',
+		role: 'Founder & CEO',
+		bio: 'Over 20 years of experience in home services and customer satisfaction.'
+	},
+	{
+		name: 'Sarah Johnson',
+		role: 'Operations Manager',
+		bio: 'Expert in coordinating teams and ensuring project excellence.'
+	},
+	{
+		name: 'Mike Williams',
+		role: 'Lead Technician',
+		bio: 'Certified professional with expertise in repairs and maintenance.'
+	},
+	{
+		name: 'Emily Davis',
+		role: 'Customer Relations',
+		bio: 'Dedicated to ensuring every client receives exceptional service.'
+	}
+];
+
+const stats = [
+	{ number: '500+', label: 'Happy Clients' },
+	{ number: '15+', label: 'Years Experience' },
+	{ number: '50+', label: 'Team Members' },
+	{ number: '99%', label: 'Satisfaction Rate' }
+];
+---
+
+<Layout title="About Us - Home Services" description="Learn about our professional home services team, our mission, and our commitment to quality service.">
+	<Navigation />
+
+	<main>
+		<!-- Hero Section -->
+		<section class="page-hero">
+			<div class="container">
+				<h1>About Us</h1>
+				<p class="hero-subtitle">
+					Your trusted partner for professional home services since 2010.
+				</p>
+			</div>
+		</section>
+
+		<!-- Story Section -->
+		<section class="story-section">
+			<div class="container">
+				<div class="story-content">
+					<div class="story-text">
+						<h2>Our Story</h2>
+						<p>
+							Founded in 2010, Home Services began with a simple mission: to provide reliable,
+							high-quality home services that homeowners can trust. What started as a small
+							family business has grown into a full-service company serving hundreds of satisfied
+							customers throughout the region.
+						</p>
+						<p>
+							Our commitment to excellence, attention to detail, and customer-first approach
+							have made us the go-to choice for home services. We take pride in building
+							lasting relationships with our clients and treating every home as if it were our own.
+						</p>
+						<p>
+							Today, we continue to expand our services while maintaining the personal touch
+							and quality workmanship that our customers have come to expect.
+						</p>
+					</div>
+					<div class="story-image">
+						<div class="image-placeholder">
+							<span class="placeholder-text">Our Team</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Stats Section -->
+		<section class="stats-section">
+			<div class="container">
+				<div class="stats-grid">
+					{stats.map(stat => (
+						<div class="stat-card">
+							<div class="stat-number">{stat.number}</div>
+							<div class="stat-label">{stat.label}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Values Section -->
+		<section class="values-section">
+			<div class="container">
+				<h2 class="section-title">Our Values</h2>
+				<div class="values-grid">
+					<div class="value-card">
+						<div class="value-icon">🎯</div>
+						<h3>Quality First</h3>
+						<p>We never compromise on the quality of our work, using only the best materials and techniques.</p>
+					</div>
+					<div class="value-card">
+						<div class="value-icon">🤝</div>
+						<h3>Integrity</h3>
+						<p>Honest communication and transparent pricing are the foundation of our business.</p>
+					</div>
+					<div class="value-card">
+						<div class="value-icon">💡</div>
+						<h3>Innovation</h3>
+						<p>We stay current with the latest industry trends and technologies to serve you better.</p>
+					</div>
+					<div class="value-card">
+						<div class="value-icon">⭐</div>
+						<h3>Excellence</h3>
+						<p>Every project receives our full attention and commitment to exceptional results.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Team Section -->
+		<section class="team-section">
+			<div class="container">
+				<h2 class="section-title">Meet Our Team</h2>
+				<div class="team-grid">
+					{teamMembers.map(member => (
+						<div class="team-card">
+							<div class="team-image">
+								<div class="image-placeholder">
+									<span class="placeholder-text">{member.name.split(' ').map(n => n[0]).join('')}</span>
+								</div>
+							</div>
+							<div class="team-info">
+								<h3>{member.name}</h3>
+								<p class="team-role">{member.role}</p>
+								<p class="team-bio">{member.bio}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section">
+			<div class="container">
+				<div class="cta-content">
+					<h2>Ready to Work With Us?</h2>
+					<p>Experience the difference that professional, reliable service makes.</p>
+					<a href="/contact" class="btn btn-primary">Get in Touch</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>
+
+<style>
+	.page-hero {
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+		color: white;
+		padding: var(--spacing-xl) var(--spacing-md);
+		text-align: center;
+	}
+
+	.page-hero h1 {
+		color: white;
+		font-size: 3rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		color: rgba(255, 255, 255, 0.95);
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.story-section {
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.story-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-lg);
+		align-items: center;
+	}
+
+	.story-text h2 {
+		color: var(--color-text);
+		margin-bottom: var(--spacing-md);
+	}
+
+	.story-text p {
+		margin-bottom: var(--spacing-md);
+		line-height: 1.8;
+	}
+
+	.story-image {
+		width: 100%;
+		aspect-ratio: 1;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+	}
+
+	.image-placeholder {
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.placeholder-text {
+		color: white;
+		font-size: 2rem;
+		font-weight: 700;
+		opacity: 0.8;
+	}
+
+	.stats-section {
+		background: var(--color-bg-light);
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: var(--spacing-lg);
+	}
+
+	.stat-card {
+		text-align: center;
+	}
+
+	.stat-number {
+		font-size: 3rem;
+		font-weight: 700;
+		color: var(--color-primary);
+		margin-bottom: var(--spacing-xs);
+	}
+
+	.stat-label {
+		font-size: 1.125rem;
+		color: var(--color-text-light);
+		font-weight: 600;
+	}
+
+	.values-section,
+	.team-section {
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.section-title {
+		text-align: center;
+		margin-bottom: var(--spacing-lg);
+	}
+
+	.values-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: var(--spacing-lg);
+	}
+
+	.value-card {
+		text-align: center;
+		padding: var(--spacing-md);
+	}
+
+	.value-icon {
+		font-size: 3rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.value-card h3 {
+		color: var(--color-text);
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.value-card p {
+		color: var(--color-text-light);
+	}
+
+	.team-section {
+		background: var(--color-bg-light);
+	}
+
+	.team-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--spacing-lg);
+	}
+
+	.team-card {
+		background: white;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		transition: all 0.3s ease;
+	}
+
+	.team-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+	}
+
+	.team-image {
+		width: 100%;
+		aspect-ratio: 1;
+		overflow: hidden;
+	}
+
+	.team-image .placeholder-text {
+		font-size: 3rem;
+	}
+
+	.team-info {
+		padding: var(--spacing-md);
+	}
+
+	.team-info h3 {
+		color: var(--color-text);
+		margin-bottom: 0.25rem;
+	}
+
+	.team-role {
+		color: var(--color-primary);
+		font-weight: 600;
+		margin-bottom: var(--spacing-sm);
+		font-size: 0.95rem;
+	}
+
+	.team-bio {
+		color: var(--color-text-light);
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	.cta-section {
+		background: var(--color-primary);
+		color: white;
+		text-align: center;
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.cta-content h2 {
+		color: white;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.cta-content p {
+		color: rgba(255, 255, 255, 0.95);
+		font-size: 1.25rem;
+		margin-bottom: var(--spacing-md);
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1rem 2rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		text-align: center;
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
+
+	.btn-primary {
+		background: white;
+		color: var(--color-primary);
+		border: 2px solid white;
+	}
+
+	.btn-primary:hover {
+		background: transparent;
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	}
+
+	@media (max-width: 768px) {
+		.page-hero h1 {
+			font-size: 2rem;
+		}
+
+		.story-content {
+			grid-template-columns: 1fr;
+		}
+
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.values-grid,
+		.team-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

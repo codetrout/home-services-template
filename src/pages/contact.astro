@@ -1,0 +1,460 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact Us - Home Services" description="Get in touch with our professional home services team. Call, email, or fill out our contact form for a free quote.">
+	<Navigation />
+
+	<main>
+		<!-- Hero Section -->
+		<section class="page-hero">
+			<div class="container">
+				<h1>Contact Us</h1>
+				<p class="hero-subtitle">
+					Get in touch with us today for a free consultation and quote.
+				</p>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section class="contact-section">
+			<div class="container">
+				<div class="contact-grid">
+					<!-- Contact Form -->
+					<div class="contact-form-container">
+						<h2>Send Us a Message</h2>
+						<p class="form-description">
+							Fill out the form below and we'll get back to you within 24 hours.
+						</p>
+
+						<form class="contact-form" id="contactForm">
+							<div class="form-group">
+								<label for="name">Full Name *</label>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									required
+									placeholder="John Doe"
+								/>
+							</div>
+
+							<div class="form-group">
+								<label for="email">Email Address *</label>
+								<input
+									type="email"
+									id="email"
+									name="email"
+									required
+									placeholder="john@example.com"
+								/>
+							</div>
+
+							<div class="form-group">
+								<label for="phone">Phone Number</label>
+								<input
+									type="tel"
+									id="phone"
+									name="phone"
+									placeholder="(555) 123-4567"
+								/>
+							</div>
+
+							<div class="form-group">
+								<label for="service">Service Needed</label>
+								<select id="service" name="service">
+									<option value="">Select a service</option>
+									<option value="cleaning">Cleaning Services</option>
+									<option value="repair">Repair Services</option>
+									<option value="maintenance">Maintenance Services</option>
+									<option value="inspection">Inspection Services</option>
+									<option value="renovation">Renovation Services</option>
+									<option value="other">Other</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="message">Message *</label>
+								<textarea
+									id="message"
+									name="message"
+									rows="5"
+									required
+									placeholder="Tell us about your project or service needs..."
+								></textarea>
+							</div>
+
+							<button type="submit" class="btn btn-primary btn-submit">
+								Send Message
+							</button>
+
+							<div class="form-message" id="formMessage"></div>
+						</form>
+					</div>
+
+					<!-- Contact Info -->
+					<div class="contact-info-container">
+						<div class="contact-info-card">
+							<h2>Get In Touch</h2>
+							<p>We're here to help with all your home service needs.</p>
+
+							<div class="info-item">
+								<div class="info-icon">📞</div>
+								<div class="info-content">
+									<h3>Phone</h3>
+									<p>(555) 123-4567</p>
+									<p class="info-detail">Mon-Fri: 8am - 6pm</p>
+								</div>
+							</div>
+
+							<div class="info-item">
+								<div class="info-icon">✉️</div>
+								<div class="info-content">
+									<h3>Email</h3>
+									<p>info@homeservices.com</p>
+									<p class="info-detail">We'll respond within 24 hours</p>
+								</div>
+							</div>
+
+							<div class="info-item">
+								<div class="info-icon">📍</div>
+								<div class="info-content">
+									<h3>Address</h3>
+									<p>123 Main Street</p>
+									<p class="info-detail">City, State 12345</p>
+								</div>
+							</div>
+
+							<div class="info-item">
+								<div class="info-icon">⏰</div>
+								<div class="info-content">
+									<h3>Business Hours</h3>
+									<p>Monday - Friday: 8am - 6pm</p>
+									<p>Saturday: 9am - 4pm</p>
+									<p class="info-detail">Sunday: Closed</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="emergency-card">
+							<h3>Emergency Service?</h3>
+							<p>We offer 24/7 emergency services for urgent situations.</p>
+							<a href="tel:5551234567" class="btn btn-emergency">
+								Call Emergency Line
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Map Section (Placeholder) -->
+		<section class="map-section">
+			<div class="container">
+				<h2 class="section-title">Find Us</h2>
+				<div class="map-placeholder">
+					<div class="map-placeholder-content">
+						<div class="map-icon">📍</div>
+						<p>Map Location</p>
+						<p class="map-text">123 Main Street, City, State 12345</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const form = document.getElementById('contactForm') as HTMLFormElement;
+		const formMessage = document.getElementById('formMessage') as HTMLDivElement;
+
+		form?.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			// Simulate form submission
+			formMessage.className = 'form-message';
+			formMessage.textContent = 'Sending message...';
+
+			setTimeout(() => {
+				formMessage.className = 'form-message success';
+				formMessage.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+				form.reset();
+
+				// Clear message after 5 seconds
+				setTimeout(() => {
+					formMessage.textContent = '';
+					formMessage.className = 'form-message';
+				}, 5000);
+			}, 1000);
+		});
+	});
+</script>
+
+<style>
+	.page-hero {
+		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+		color: white;
+		padding: var(--spacing-xl) var(--spacing-md);
+		text-align: center;
+	}
+
+	.page-hero h1 {
+		color: white;
+		font-size: 3rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		color: rgba(255, 255, 255, 0.95);
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.contact-section {
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-xl);
+	}
+
+	.contact-form-container h2,
+	.contact-info-card h2 {
+		color: var(--color-text);
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.form-description {
+		margin-bottom: var(--spacing-md);
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-md);
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-group label {
+		font-weight: 600;
+		color: var(--color-text);
+		font-size: 0.95rem;
+	}
+
+	.form-group input,
+	.form-group select,
+	.form-group textarea {
+		padding: 0.875rem;
+		border: 2px solid var(--color-border);
+		border-radius: var(--border-radius);
+		font-family: inherit;
+		font-size: 1rem;
+		transition: all 0.3s ease;
+	}
+
+	.form-group input:focus,
+	.form-group select:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+	}
+
+	.form-group textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1rem 2rem;
+		border-radius: var(--border-radius);
+		font-weight: 600;
+		text-align: center;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		border: none;
+		cursor: pointer;
+		font-size: 1rem;
+	}
+
+	.btn-primary {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	.btn-primary:hover {
+		background: var(--color-primary-dark);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+	}
+
+	.btn-submit {
+		margin-top: var(--spacing-sm);
+	}
+
+	.form-message {
+		padding: 1rem;
+		border-radius: var(--border-radius);
+		text-align: center;
+		font-weight: 600;
+		margin-top: var(--spacing-sm);
+	}
+
+	.form-message.success {
+		background: #dcfce7;
+		color: #166534;
+		border: 2px solid #86efac;
+	}
+
+	.form-message.error {
+		background: #fee2e2;
+		color: #991b1b;
+		border: 2px solid #fca5a5;
+	}
+
+	.contact-info-container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-md);
+	}
+
+	.contact-info-card,
+	.emergency-card {
+		background: var(--color-bg-light);
+		padding: var(--spacing-lg);
+		border-radius: var(--border-radius);
+		border: 2px solid var(--color-border);
+	}
+
+	.contact-info-card p {
+		margin-bottom: var(--spacing-md);
+	}
+
+	.info-item {
+		display: flex;
+		gap: var(--spacing-sm);
+		margin-bottom: var(--spacing-md);
+		padding-bottom: var(--spacing-md);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.info-item:last-child {
+		border-bottom: none;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.info-icon {
+		font-size: 2rem;
+		flex-shrink: 0;
+	}
+
+	.info-content h3 {
+		color: var(--color-text);
+		margin-bottom: 0.25rem;
+		font-size: 1.125rem;
+	}
+
+	.info-content p {
+		margin: 0;
+		color: var(--color-text);
+		font-size: 0.95rem;
+	}
+
+	.info-detail {
+		color: var(--color-text-light) !important;
+		font-size: 0.875rem !important;
+	}
+
+	.emergency-card {
+		background: var(--color-primary);
+		color: white;
+		text-align: center;
+	}
+
+	.emergency-card h3 {
+		color: white;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.emergency-card p {
+		color: rgba(255, 255, 255, 0.95);
+		margin-bottom: var(--spacing-md);
+	}
+
+	.btn-emergency {
+		background: white;
+		color: var(--color-primary);
+		width: 100%;
+	}
+
+	.btn-emergency:hover {
+		background: var(--color-bg-light);
+	}
+
+	.map-section {
+		padding: var(--spacing-xl) var(--spacing-md);
+		background: var(--color-bg-light);
+	}
+
+	.section-title {
+		text-align: center;
+		margin-bottom: var(--spacing-lg);
+	}
+
+	.map-placeholder {
+		width: 100%;
+		height: 400px;
+		background: white;
+		border-radius: var(--border-radius);
+		border: 2px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.map-placeholder-content {
+		text-align: center;
+	}
+
+	.map-icon {
+		font-size: 4rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.map-placeholder-content p {
+		color: var(--color-text-light);
+		margin: 0;
+	}
+
+	.map-text {
+		font-size: 0.95rem;
+		margin-top: 0.5rem;
+	}
+
+	@media (max-width: 968px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.page-hero h1 {
+			font-size: 2rem;
+		}
+	}
+</style>
