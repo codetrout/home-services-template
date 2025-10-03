@@ -2,57 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
 
-// Gallery items - in a real implementation, these would be actual images
-const galleryItems = [
-	{
-		title: 'Kitchen Renovation',
-		category: 'Renovation',
-		description: 'Modern kitchen remodel with custom cabinetry'
-	},
-	{
-		title: 'Bathroom Remodel',
-		category: 'Renovation',
-		description: 'Complete bathroom transformation'
-	},
-	{
-		title: 'Living Room Cleaning',
-		category: 'Cleaning',
-		description: 'Professional deep cleaning service'
-	},
-	{
-		title: 'Exterior Maintenance',
-		category: 'Maintenance',
-		description: 'Gutter cleaning and exterior care'
-	},
-	{
-		title: 'Electrical Installation',
-		category: 'Repair',
-		description: 'New lighting fixtures installed'
-	},
-	{
-		title: 'Floor Refinishing',
-		category: 'Renovation',
-		description: 'Hardwood floor restoration'
-	},
-	{
-		title: 'Garden Landscaping',
-		category: 'Maintenance',
-		description: 'Professional lawn and garden care'
-	},
-	{
-		title: 'Plumbing Repair',
-		category: 'Repair',
-		description: 'Expert plumbing solutions'
-	},
-	{
-		title: 'Office Cleaning',
-		category: 'Cleaning',
-		description: 'Commercial space deep cleaning'
-	}
-];
-
-const categories = ['All', ...new Set(galleryItems.map(item => item.category))];
+const galleryItems = await getCollection('gallery');
+const sortedGallery = galleryItems.sort((a, b) => a.data.order - b.data.order);
+const categories = ['All', ...new Set(galleryItems.map(item => item.data.category))];
 ---
 
 <Layout title="Gallery - Home Services" description="View our portfolio of completed projects including renovations, repairs, cleaning, and maintenance work.">
@@ -89,22 +43,28 @@ const categories = ['All', ...new Set(galleryItems.map(item => item.category))];
 		<section class="gallery-section">
 			<div class="container">
 				<div class="gallery-grid">
-					{galleryItems.map((item, index) => (
-						<div class="gallery-item" data-category={item.category.toLowerCase()}>
-							<div class="gallery-card">
-								<div class="gallery-image">
-									<div class="image-placeholder">
-										<span class="placeholder-text">{item.category}</span>
+					{sortedGallery.map(async (item) => {
+						const { Content } = await item.render();
+						return (
+							<div class="gallery-item" data-category={item.data.category.toLowerCase()}>
+								<div class="gallery-card">
+									<div class="gallery-image">
+										<div class="image-placeholder">
+											<span class="placeholder-text">{item.data.category}</span>
+										</div>
+									</div>
+									<div class="gallery-info">
+										<span class="gallery-category">{item.data.category}</span>
+										<h3>{item.data.title}</h3>
+										<p>{item.data.description}</p>
+										<div class="gallery-content">
+											<Content />
+										</div>
 									</div>
 								</div>
-								<div class="gallery-info">
-									<span class="gallery-category">{item.category}</span>
-									<h3>{item.title}</h3>
-									<p>{item.description}</p>
-								</div>
 							</div>
-						</div>
-					))}
+						);
+					})}
 				</div>
 			</div>
 		</section>
@@ -293,6 +253,17 @@ const categories = ['All', ...new Set(galleryItems.map(item => item.category))];
 		color: var(--color-text-light);
 		font-size: 0.95rem;
 		margin: 0;
+	}
+
+	.gallery-content {
+		margin-top: var(--spacing-sm);
+		font-size: 0.9rem;
+		color: var(--color-text-light);
+	}
+
+	.gallery-content :global(p) {
+		margin: 0;
+		line-height: 1.6;
 	}
 
 	.cta-section {

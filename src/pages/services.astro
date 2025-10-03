@@ -2,75 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
 
-const services = [
-	{
-		title: 'Cleaning Services',
-		description: 'Professional cleaning solutions for residential and commercial properties.',
-		features: [
-			'Deep cleaning and sanitization',
-			'Regular maintenance cleaning',
-			'Post-construction cleanup',
-			'Carpet and upholstery cleaning',
-			'Window cleaning services'
-		]
-	},
-	{
-		title: 'Repair Services',
-		description: 'Expert repairs for all aspects of your home and property.',
-		features: [
-			'Plumbing repairs and installation',
-			'Electrical work and troubleshooting',
-			'Drywall and painting repairs',
-			'Door and window repairs',
-			'General handyman services'
-		]
-	},
-	{
-		title: 'Maintenance Services',
-		description: 'Regular maintenance to keep your property in excellent condition.',
-		features: [
-			'HVAC system maintenance',
-			'Gutter cleaning and maintenance',
-			'Lawn care and landscaping',
-			'Seasonal property inspections',
-			'Preventive maintenance programs'
-		]
-	},
-	{
-		title: 'Inspection Services',
-		description: 'Thorough inspections to identify and prevent potential issues.',
-		features: [
-			'Pre-purchase home inspections',
-			'Annual property assessments',
-			'Safety and code compliance checks',
-			'Detailed inspection reports',
-			'Follow-up consultations'
-		]
-	},
-	{
-		title: 'Emergency Services',
-		description: '24/7 emergency response for urgent home service needs.',
-		features: [
-			'Emergency plumbing repairs',
-			'Electrical emergency response',
-			'Water damage mitigation',
-			'Same-day service availability',
-			'Rapid response team'
-		]
-	},
-	{
-		title: 'Renovation Services',
-		description: 'Transform your space with our professional renovation services.',
-		features: [
-			'Kitchen and bathroom remodeling',
-			'Basement finishing',
-			'Room additions and expansions',
-			'Flooring installation',
-			'Custom carpentry work'
-		]
-	}
-];
+const services = await getCollection('services');
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Our Services - Home Services" description="Comprehensive home services including cleaning, repairs, maintenance, inspections, and more. Professional solutions for all your needs.">
@@ -92,18 +27,19 @@ const services = [
 		<section class="services-section">
 			<div class="container">
 				<div class="services-grid">
-					{services.map(service => (
-						<div class="service-detail-card">
-							<h2>{service.title}</h2>
-							<p class="service-description">{service.description}</p>
-							<ul class="service-features">
-								{service.features.map(feature => (
-									<li>{feature}</li>
-								))}
-							</ul>
-							<a href="/contact" class="btn btn-outline">Request Quote</a>
-						</div>
-					))}
+					{sortedServices.map(async (service) => {
+						const { Content } = await service.render();
+						return (
+							<div class="service-detail-card">
+								<h2>{service.data.title}</h2>
+								<p class="service-description">{service.data.description}</p>
+								<div class="service-content">
+									<Content />
+								</div>
+								<a href="/contact" class="btn btn-outline">Request Quote</a>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		</section>
@@ -209,25 +145,41 @@ const services = [
 		margin-bottom: var(--spacing-md);
 	}
 
-	.service-features {
-		list-style: none;
+	.service-content {
 		margin-bottom: var(--spacing-md);
 		flex-grow: 1;
 	}
 
-	.service-features li {
+	.service-content :global(h2) {
+		font-size: 1.25rem;
+		color: var(--color-text);
+		margin-top: var(--spacing-md);
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.service-content :global(ul) {
+		list-style: none;
+		padding: 0;
+	}
+
+	.service-content :global(li) {
 		padding: 0.5rem 0;
 		padding-left: 1.5rem;
 		position: relative;
 		color: var(--color-text);
 	}
 
-	.service-features li::before {
+	.service-content :global(li::before) {
 		content: '✓';
 		position: absolute;
 		left: 0;
 		color: var(--color-primary);
 		font-weight: bold;
+	}
+
+	.service-content :global(p) {
+		color: var(--color-text-light);
+		margin-bottom: var(--spacing-sm);
 	}
 
 	.btn {
