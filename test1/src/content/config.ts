@@ -23,7 +23,7 @@ const galleryCollection = defineCollection({
 	type: 'content',
 	schema: z.object({
 		title: z.string(),
-		category: z.enum(['Cleaning', 'Repair', 'Maintenance', 'Renovation', 'Inspection']),
+		category: z.enum(['Excavation', 'Cleaning', 'Repair', 'Maintenance', 'Renovation', 'Inspection']),
 		description: z.string(),
 		order: z.number(),
 	}),
