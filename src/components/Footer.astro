@@ -6,8 +6,8 @@ const currentYear = new Date().getFullYear();
 	<div class="container footer-container">
 		<div class="footer-grid">
 			<div class="footer-col">
-				<h3>Home Services</h3>
-				<p>Professional services for your home and business needs.</p>
+				<img src="/logo.webp" alt="Kinder Excavation" class="footer-logo" />
+				<p>Professional excavation services for Central Oregon.</p>
 			</div>
 
 			<div class="footer-col">
@@ -61,6 +61,12 @@ const currentYear = new Date().getFullYear();
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: var(--spacing-lg);
 		margin-bottom: var(--spacing-lg);
+	}
+
+	.footer-logo {
+		height: 60px;
+		width: auto;
+		margin-bottom: var(--spacing-sm);
 	}
 
 	.footer-col h3 {

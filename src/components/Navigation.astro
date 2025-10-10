@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname;
 <nav class="navbar">
 	<div class="container nav-container">
 		<a href="/" class="logo">
-			<span class="logo-text">Home Services</span>
+			<img src="/logo.webp" alt="Kinder Excavation" class="logo-img" />
 		</a>
 
 		<button class="mobile-toggle" aria-label="Toggle menu">
@@ -66,10 +66,10 @@ const currentPath = Astro.url.pathname;
 		padding: var(--spacing-sm) var(--spacing-md);
 	}
 
-	.logo-text {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--color-primary);
+	.logo-img {
+		height: 50px;
+		width: auto;
+		display: block;
 	}
 
 	.mobile-toggle {
