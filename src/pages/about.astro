@@ -149,19 +149,28 @@ const stats = [
 
 <style>
 	.page-hero {
-		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+		background:
+			linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url('/about-hero.jpg') center/cover no-repeat;
 		color: white;
 		padding: var(--spacing-xl) var(--spacing-md);
 		text-align: center;
 		min-height: 500px;
 		display: flex;
 		align-items: center;
+		position: relative;
+	}
+
+	.page-hero .container {
+		position: relative;
+		z-index: 1;
 	}
 
 	.page-hero h1 {
 		color: white;
 		font-size: 3rem;
 		margin-bottom: var(--spacing-sm);
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 	}
 
 	.hero-subtitle {
@@ -169,6 +178,7 @@ const stats = [
 		color: rgba(255, 255, 255, 0.95);
 		max-width: 700px;
 		margin: 0 auto;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 	}
 
 	.story-section {
