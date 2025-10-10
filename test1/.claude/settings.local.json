@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/adamjones/astro/**)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(git restore:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:robinsonandowen.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

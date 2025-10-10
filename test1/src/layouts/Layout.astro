@@ -1,0 +1,138 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Professional home services for your needs" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--color-primary: #2563eb;
+		--color-primary-dark: #1e40af;
+		--color-secondary: #64748b;
+		--color-accent: #0ea5e9;
+		--color-text: #1e293b;
+		--color-text-light: #64748b;
+		--color-bg: #ffffff;
+		--color-bg-light: #f8fafc;
+		--color-border: #e2e8f0;
+		--spacing-xs: 0.5rem;
+		--spacing-sm: 1rem;
+		--spacing-md: 2rem;
+		--spacing-lg: 4rem;
+		--spacing-xl: 6rem;
+		--font-sans: system-ui, -apple-system, sans-serif;
+		--max-width: 1200px;
+		--border-radius: 8px;
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html {
+		font-family: var(--font-sans);
+		color: var(--color-text);
+		background: var(--color-bg);
+		scroll-behavior: smooth;
+	}
+
+	body {
+		line-height: 1.6;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		line-height: 1.2;
+		font-weight: 700;
+	}
+
+	h1 {
+		font-size: 3rem;
+		margin-bottom: var(--spacing-md);
+	}
+
+	h2 {
+		font-size: 2.5rem;
+		margin-bottom: var(--spacing-md);
+	}
+
+	h3 {
+		font-size: 1.75rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	p {
+		margin-bottom: var(--spacing-sm);
+		color: var(--color-text-light);
+		font-size: 1.125rem;
+	}
+
+	a {
+		color: var(--color-primary);
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	a:hover {
+		color: var(--color-primary-dark);
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	button {
+		cursor: pointer;
+		border: none;
+		font-family: inherit;
+	}
+
+	section {
+		padding: var(--spacing-xl) var(--spacing-md);
+	}
+
+	.container {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 0 var(--spacing-md);
+	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 2rem;
+		}
+
+		h2 {
+			font-size: 1.75rem;
+		}
+
+		h3 {
+			font-size: 1.5rem;
+		}
+
+		section {
+			padding: var(--spacing-lg) var(--spacing-sm);
+		}
+	}
+</style>
